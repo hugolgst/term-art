@@ -2,13 +2,16 @@ class Board
 
   attr_reader :titles, :lines
 
-  def initialize(titles, lines) @titles = titles
-  @lines = lines
+  def initialize(titles, lines)
+    @titles = titles.sort
+    @lines = lines
   end
 
   def draw(style) # Differents styles
-    styles = {# Name  => Separators
-              :simple => '┌┬┐├┼┤└┴┘│─', :double => '╔╦╗╠╬╣╚╩╝║═'
+    styles = {
+      # Name  => Separators
+      :simple => '┌┬┐├┼┤└┴┘│─',
+      :double => '╔╦╗╠╬╣╚╩╝║═'
     }
 
     style = styles[style]
@@ -28,8 +31,9 @@ class Board
 
     formatted_lines = []
 
-    (all_lines = @lines.dup.push(titles)).each_index do |line_index|
-      # Center all line items
+    all_lines = @lines.dup.unshift(titles)
+
+    all_lines.each_index do |line_index| # Center all line items
       line = all_lines[line_index]
       line = line.map {|item| item.center max_lengths[line.index item]}
 
@@ -40,10 +44,7 @@ class Board
       formatted_lines << line
     end
 
-    puts up, formatted_lines.join("\n#{separator}\n"), down
+    [up, formatted_lines.join("\n#{separator}\n"), down].join("\n")
   end
 
 end
-
-a = Board.new(["Hello", "Hey"], [["Slt", "mdr"]])
-a.draw(:double)
