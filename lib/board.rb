@@ -15,7 +15,7 @@ module TermArt
     attr_reader :titles, :lines
 
     def initialize(titles, lines)
-      @titles = titles.sort
+      @titles = titles
       @lines = lines
     end
 
@@ -25,9 +25,7 @@ module TermArt
 
       # Get all the sizes of columns
       max_lengths = @lines.dup.push(@titles).transpose.map do |column|
-        column
-          .map { |item| item.tr("\e[0-9m", '') }
-          .max_by(&:size).size
+        column.max_by(&:size).size
       end
 
       # Get the horizontal separators
