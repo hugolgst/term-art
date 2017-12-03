@@ -16,7 +16,11 @@ class Board
 
     style = styles[style]
     # Get all the sizes of columns
-    max_lengths = @lines.dup.push(@titles).transpose.map {|column| column.max_by(&:size).size}
+    max_lengths = @lines
+                    .dup
+                    .push(@titles)
+                    .transpose
+                    .map { |column| column.max_by(&:size).size }
 
     # Get the horizontal separators
     horizontal_columns = []
@@ -31,11 +35,13 @@ class Board
 
     formatted_lines = []
 
-    all_lines = @lines.dup.unshift(titles)
+    all_lines = @lines
+                  .dup
+                  .unshift(titles)
 
     all_lines.each_index do |line_index| # Center all line items
       line = all_lines[line_index]
-      line = line.map {|item| item.center max_lengths[line.index item]}
+      line = line.map { |item| item.center max_lengths[line.index item] }
 
       # Format the line with vertical separator
       vertical_separator = style[-2]
