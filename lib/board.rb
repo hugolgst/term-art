@@ -2,6 +2,16 @@ module TermArt
 
   class Board
 
+    STYLES = {
+      # Name  => Separators
+      :simple => '┌┬┐├┼┤└┴┘│─',
+      :double => '╔╦╗╠╬╣╚╩╝║═'
+    }
+
+    COLOR = {
+      :default => 39, :red => 31, :green => 32, :yellow => 33, :blue => 34, :magenta => 35, :cyan => 36
+    }
+
     attr_reader :titles, :lines
 
     def initialize(titles, lines)
@@ -9,14 +19,10 @@ module TermArt
       @lines = lines
     end
 
-    def draw(style) # Differents styles
-      styles = {
-        # Name  => Separators
-        :simple => '┌┬┐├┼┤└┴┘│─',
-        :double => '╔╦╗╠╬╣╚╩╝║═'
-      }
+    def draw(style, color = :default) # Differents styles
+      color = "\e[#{COLOR[color]}m"
+      style = STYLES[style].chars.map{ |separator| "#{color}#{separator}\e[39m" }
 
-      style = styles[style]
       # Get all the sizes of columns
       max_lengths = @lines
                       .dup
@@ -58,3 +64,6 @@ module TermArt
   end
 
 end
+
+a = TermArt::Board.new(["Hello", "Hey"], [["Slt", "mdr"]])
+puts a.draw(:double, :green)
