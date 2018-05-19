@@ -1,43 +1,48 @@
-# term-art
-## Boards [`TermArt::Board`](lib/term-art.rb)
+<p align="center"><img width=12.5% src="https://i.imgur.com/ygtsUyd.png"></p>
+<p align="center"><img width=60% src="https://i.imgur.com/Pd9buxE.png"></p>
 
-Generate boards with unlimited lines and auto-aligment there are 2 differents styles:
+<p align="center">
+  <img src="https://badge.fury.io/rb/term-art.svg" alt="Gem version" />
+  <img src="https://img.shields.io/gem/dt/term-art.svg" alt="Downloads" />
+</p>
 
-First of all create your Board object with 2 parameters, the titles and the lines
+<p align="center">
+  <a href="#how-to-use">How To Use</a> •
+  <a href="#documentation">Documentation</a> •
+  <a href="#example">Example</a>
+</p>
 
-```ruby
-board = TermArt::Board.new(
-  ["Name", "Ruby", "Java"],
-  [["Hugo", "X", "X"], ["Paul", "", "X"]]
-)
+# How to use
+Install the gem manually :
+```
+$ gem install term-art
 ```
 
-* Simple
-
-```ruby
-puts board.draw(:simple)
+or add it to your Gemfile :
+```diff
++ gem 'term-art'
 ```
 
-![](https://i.imgur.com/PmgaCsV.png)
-
-* Double
-
-```ruby
-puts board.draw(:double)
+and then run :
+```
+$ bundle
 ```
 
-![](https://i.imgur.com/SCyd2Kx.png)
+# Documentation
+## Styles
+There are two differents styles:
+* `:simple` ![Simple style](https://i.imgur.com/PmgaCsV.png)
+* `:double` ![Double style](https://i.imgur.com/SCyd2Kx.png)
+## Colors
+See [hue-rb](https://github.com/AnanaGame/hue-rb#colors)
 
-And you can too add colors to separators, here is the list of colors:
-* `:red`
-* `:green`
-* `:yellow`
-* `:blue`
-* `:magenta`
-* `:cyan`
-
+# Example
 ```ruby
-puts board.draw(:double, :red)
-```
+require 'term-art'
 
-![](https://i.imgur.com/SWOmvMd.png)
+chart = TermArt::Chart.new([
+  ['A', 'B', 'C'],
+  ['D', 'E', 'F']
+])
+puts chart.draw(style: :simple, color: :red)
+```

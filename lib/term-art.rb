@@ -52,7 +52,7 @@ module TermArt
         style[-1] * (column_size + 2)
       end
     end
-    
+
     def style(params)
       STYLES[params[:style]].chars.map do |separator|
         separator.send(params[:color]) + ''.white
