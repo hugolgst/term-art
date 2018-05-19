@@ -1,5 +1,5 @@
 # term-art
-## Boards [`TermArt::Board`](lib/board.rb)
+## Boards [`TermArt::Board`](lib/term-art.rb)
 
 Generate boards with unlimited lines and auto-aligment there are 2 differents styles:
 
