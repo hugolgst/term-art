@@ -4,6 +4,7 @@
 <p align="center">
   <img src="https://badge.fury.io/rb/term-art.svg" alt="Gem version" />
   <img src="https://img.shields.io/gem/dt/term-art.svg" alt="Downloads" />
+  <img src="https://img.shields.io/github/license/AnanaGame/term-art.svg" alt="License" />
 </p>
 
 <p align="center">
